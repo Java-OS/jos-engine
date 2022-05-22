@@ -11,6 +11,7 @@
         <module>jos-core</module>
         <module>jos-api</module>
         <module>jos-shell</module>
+        <module>jos-module</module>
     </modules>
 
     <build>
@@ -22,19 +23,6 @@
                 <version>3.8.1</version>
                 <configuration>
                     <release>17</release>
-                </configuration>
-            </plugin>
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-jar-plugin</artifactId>
-                <version>3.2.2</version>
-                <configuration>
-                    <archive>
-                        <manifest>
-                            <addClasspath>true</addClasspath>
-                            <mainClass>ir.moke.jos.core.AppRunner</mainClass>
-                        </manifest>
-                    </archive>
                 </configuration>
             </plugin>
         </plugins>

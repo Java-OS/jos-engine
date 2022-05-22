@@ -1,6 +1,7 @@
 package ir.moke.jos;
 
 import ir.moke.jos.command.Echo;
+import ir.moke.jos.command.Module;
 import org.fusesource.jansi.AnsiConsole;
 import org.jline.console.SystemRegistry;
 import org.jline.console.impl.SystemRegistryImpl;
@@ -26,9 +27,10 @@ public class JShellContainer {
     static class CliCommands implements Runnable {
         PrintWriter out;
 
-        CliCommands() {}
+        CliCommands() {
+        }
 
-        public void setReader(LineReader reader){
+        public void setReader(LineReader reader) {
             out = reader.getTerminal().writer();
         }
 
@@ -46,6 +48,7 @@ public class JShellContainer {
             CommandLine cmd = new CommandLine(cliCommands, defaultFactory);
 
             cmd.addSubcommand(Echo.class);
+            cmd.addSubcommand(Module.class);
             cmd.addSubcommand(CommandLine.HelpCommand.class);
 
             ShellRegistry shellRegistry = new ShellRegistry(cmd);
