@@ -1,4 +1,6 @@
 module jos.shell {
+    requires text.table.formatter;
+
     requires jos.api;
     requires jos.module;
     requires org.jline;

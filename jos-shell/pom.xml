@@ -45,6 +45,11 @@
             <artifactId>jansi</artifactId>
             <version>2.4.0</version>
         </dependency>
+        <dependency>
+            <groupId>org.nocrala.tools.texttablefmt</groupId>
+            <artifactId>text-table-formatter</artifactId>
+            <version>1.2.4</version>
+        </dependency>
     </dependencies>
 
 </project>

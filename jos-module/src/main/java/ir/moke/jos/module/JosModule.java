@@ -6,7 +6,7 @@ public record JosModule(String josName,
                         String moduleName,
                         String version,
                         String description,
-                        boolean isEnable,
+                        boolean enable,
                         Path jarFile
 ) {
 }
