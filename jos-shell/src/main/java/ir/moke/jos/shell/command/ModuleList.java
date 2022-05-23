@@ -1,7 +1,7 @@
-package ir.moke.jos.command;
+package ir.moke.jos.shell.command;
 
 
-import ir.moke.jos.StringUtils;
+import ir.moke.jos.shell.StringUtils;
 import ir.moke.jos.module.JosModule;
 import ir.moke.jos.module.ModuleContainer;
 import org.nocrala.tools.texttablefmt.Table;

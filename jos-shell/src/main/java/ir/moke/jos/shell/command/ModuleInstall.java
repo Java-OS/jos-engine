@@ -1,4 +1,4 @@
-package ir.moke.jos.command;
+package ir.moke.jos.shell.command;
 
 
 import ir.moke.jos.module.ModuleContainer;

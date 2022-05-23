@@ -3,4 +3,5 @@ module jos.core {
     requires jos.module;
     uses ir.moke.jos.api.GenericService;
     uses ir.moke.jos.module.ModuleContainer;
+    requires jos.shell;
 }

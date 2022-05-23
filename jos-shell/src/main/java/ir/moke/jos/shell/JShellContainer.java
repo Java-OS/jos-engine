@@ -1,7 +1,7 @@
-package ir.moke.jos;
+package ir.moke.jos.shell;
 
-import ir.moke.jos.command.Echo;
-import ir.moke.jos.command.Module;
+import ir.moke.jos.shell.command.Echo;
+import ir.moke.jos.shell.command.Module;
 import org.fusesource.jansi.AnsiConsole;
 import org.jline.console.SystemRegistry;
 import org.jline.console.impl.SystemRegistryImpl;

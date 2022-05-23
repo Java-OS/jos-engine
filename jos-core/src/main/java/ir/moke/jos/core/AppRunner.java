@@ -1,9 +1,9 @@
 package ir.moke.jos.core;
 
-import ir.moke.jos.module.ModuleContainer;
+import ir.moke.jos.shell.JShellContainer;
 
 public class AppRunner {
     public static void main(String[] args) {
-        ModuleContainer.startBuiltinServices();
+        JShellContainer.run();
     }
 }
