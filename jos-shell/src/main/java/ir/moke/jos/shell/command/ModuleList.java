@@ -1,16 +1,15 @@
 package ir.moke.jos.shell.command;
 
 
-import ir.moke.jos.shell.StringUtils;
 import ir.moke.jos.module.JosModule;
 import ir.moke.jos.module.ModuleContainer;
+import ir.moke.jos.shell.StringUtils;
 import org.nocrala.tools.texttablefmt.Table;
 import picocli.CommandLine;
 
 import java.util.List;
 
-@CommandLine.Command(name = "list", mixinStandardHelpOptions = true,
-        description = "list jos modules")
+@CommandLine.Command(name = "list", description = "list jos modules")
 public class ModuleList implements Runnable {
 
     @Override

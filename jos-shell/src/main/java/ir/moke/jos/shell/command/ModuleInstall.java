@@ -6,8 +6,7 @@ import picocli.CommandLine;
 
 import java.nio.file.Path;
 
-@CommandLine.Command(name = "install", mixinStandardHelpOptions = true,
-        description = "Install jos modules")
+@CommandLine.Command(name = "install",description = "Install jos modules")
 public class ModuleInstall implements Runnable {
 
     @CommandLine.Parameters
