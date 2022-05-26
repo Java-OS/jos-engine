@@ -4,7 +4,6 @@ package ir.moke.jos.shell.command;
 import ir.moke.jos.common.exception.JosModuleException;
 import ir.moke.jos.module.JosModule;
 import ir.moke.jos.module.ModuleContext;
-import ir.moke.jos.module.ModuleUtils;
 import ir.moke.jos.shell.StringUtils;
 import org.nocrala.tools.texttablefmt.Table;
 import picocli.CommandLine;
