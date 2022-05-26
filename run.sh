@@ -2,4 +2,4 @@
 
 mvn compile package 
 clear 
-java --module-path jos-core/target/lib -m jos.core ir.moke.jos.core.AppRunner 
+java -agentlib:jdwp=transport=dt_socket,server=y,suspend=n,address=*:5005 --module-path jos-core/target/lib -m jos.core ir.moke.jos.core.AppRunner 

@@ -1,3 +1,5 @@
+import ir.moke.jos.module.ModuleUtils;
+
 module jos.shell {
     requires text.table.formatter;
 
@@ -5,7 +7,8 @@ module jos.shell {
     requires org.jline;
     requires info.picocli;
     requires org.fusesource.jansi;
-    uses ir.moke.jos.module.ModuleContainer;
+    requires jos.common;
+    uses ModuleUtils;
     opens ir.moke.jos.shell.command;
     exports ir.moke.jos.shell;
 }

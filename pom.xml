@@ -12,6 +12,7 @@
         <module>jos-api</module>
         <module>jos-shell</module>
         <module>jos-module</module>
+        <module>jos-common</module>
     </modules>
 
     <build>

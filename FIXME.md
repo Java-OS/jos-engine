@@ -2,6 +2,7 @@
 2. Fix install with same file name
 3. multiple module with some jos name . 
    enabled by jpms module name . 
+
    sample    |  com.sample      | sample.jar
    sample    |  ir.moke.sample  | moke-sample.jar
    
