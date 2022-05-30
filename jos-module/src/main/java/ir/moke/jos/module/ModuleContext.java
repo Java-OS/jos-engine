@@ -1,5 +1,6 @@
 package ir.moke.jos.module;
 
+import ir.moke.jos.api.GenericService;
 import ir.moke.jos.common.Environment;
 import ir.moke.jos.common.exception.JosModuleException;
 
@@ -34,8 +35,9 @@ public interface ModuleContext {
         }
     }
 
-    static void remove(String name) {
-
+    static void uninstall(String name) throws JosModuleException {
+        disable(name);
+        ModuleUtils.removeArchive(name);
     }
 
     static List<JosModule> list() throws JosModuleException {
@@ -46,7 +48,19 @@ public interface ModuleContext {
         ModuleUtils.enableModule(name);
     }
 
-    static void disable(String name) {
 
+    /**
+     * steps :
+     * 1) check module enabled
+     * 2) call {@link GenericService#stop()}
+     * 3) remove link
+     * @param name module name
+     */
+    static void disable(String name) throws JosModuleException {
+        boolean isEnabled = ModuleUtils.isModuleEnable(name);
+        if (isEnabled) {
+            ModuleUtils.callStopService(name);
+            ModuleUtils.removeLink(name);
+        }
     }
 }

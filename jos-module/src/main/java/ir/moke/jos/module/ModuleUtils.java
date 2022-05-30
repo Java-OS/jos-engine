@@ -6,6 +6,7 @@ import ir.moke.jos.common.exception.JosExceptionTypes;
 import ir.moke.jos.common.exception.JosModuleException;
 import ir.moke.jos.common.tuple.Tuple2;
 
+import java.io.File;
 import java.io.IOException;
 import java.lang.module.*;
 import java.nio.file.*;
@@ -111,6 +112,16 @@ public class ModuleUtils {
         return Files.exists(MODULE_ENABLED_PATH.resolve(fileName), LinkOption.NOFOLLOW_LINKS);
     }
 
+    public static boolean isModuleEnable(String josModuleName) {
+        try {
+            return moduleList().stream()
+                    .filter(item -> item.josName().equals(josModuleName))
+                    .anyMatch(JosModule::enable);
+        } catch (JosModuleException ignore) {
+        }
+        return false;
+    }
+
     public static void enableModule(String moduleName) throws JosModuleException {
         linkModule(moduleName);
         var moduleLayer = getModuleLayer(MODULE_ENABLED_PATH);
@@ -136,12 +147,33 @@ public class ModuleUtils {
         });
     }
 
+    public static void removeLink(String moduleName) throws JosModuleException {
+        Optional<String> jarFileName = moduleList().stream()
+                .filter(item -> item.josName().equals(moduleName))
+                .map(JosModule::jarFile)
+                .map(Path::toFile)
+                .map(File::getName)
+                .findFirst();
+        if (jarFileName.isPresent()) {
+            try {
+                Files.delete(MODULE_ENABLED_PATH.resolve(jarFileName.get()));
+            } catch (IOException ignore) {}
+        }
+    }
+
     public static void removeArchive(Path path) {
         try {
             Files.delete(path);
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
+    }
+
+    public static void removeArchive(String name) throws JosModuleException {
+        moduleList().stream()
+                .filter(item -> item.josName().equals(name))
+                .map(JosModule::jarFile)
+                .findFirst().ifPresent(ModuleUtils::removeArchive);
     }
 
     public static void checkDuplicateJosNames() throws JosModuleException {
@@ -161,5 +193,14 @@ public class ModuleUtils {
         } catch (LayerInstantiationException e) {
             throw new JosModuleException(e.getMessage());
         }
+    }
+
+    public static void callStopService(String moduleName) throws JosModuleException {
+        ModuleLayer moduleLayer = getModuleLayer(MODULE_ENABLED_PATH);
+
+        ServiceLoader.load(moduleLayer, GenericService.class)
+                .stream()
+                .map(ServiceLoader.Provider::get)
+                .forEach(GenericService::stop);
     }
 }

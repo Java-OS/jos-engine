@@ -7,6 +7,6 @@ public record JosModule(String josName,
                         String version,
                         String description,
                         boolean enable,
-                        Path jarFile
+                        Path jarFile // install source , enable destination
 ) {
 }
