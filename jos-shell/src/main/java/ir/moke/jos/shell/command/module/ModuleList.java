@@ -5,7 +5,7 @@ import ir.moke.jos.common.exception.JosException;
 import ir.moke.jos.module.JosModule;
 import ir.moke.jos.module.ModuleContext;
 import ir.moke.jos.module.ModuleContextImpl;
-import ir.moke.jos.shell.StringUtils;
+import ir.moke.jos.shell.ConsoleUtils;
 import org.nocrala.tools.texttablefmt.Table;
 import picocli.CommandLine;
 
@@ -20,7 +20,7 @@ public class ModuleList implements Runnable {
             ModuleContext context = new ModuleContextImpl();
             Set<JosModule> josModuleList = context.list();
             if (josModuleList.isEmpty()) return;
-            Table table = StringUtils.formatListToTextTable(josModuleList);
+            Table table = ConsoleUtils.formatListToTextTable(josModuleList);
             table.setColumnWidth(0, 25, 50);
             table.setColumnWidth(1, 15, 50);
             table.setColumnWidth(2, 20, 50);

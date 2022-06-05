@@ -9,7 +9,7 @@ import java.util.Arrays;
 import java.util.Collection;
 import java.util.List;
 
-public interface StringUtils {
+public interface ConsoleUtils {
     static Table formatListToTextTable(Collection<?> objectList) {
         Object first = objectList.iterator().next();
         List<Method> methods = Arrays.stream(first.getClass().getDeclaredMethods())
