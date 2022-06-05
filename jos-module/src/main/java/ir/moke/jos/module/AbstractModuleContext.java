@@ -121,6 +121,17 @@ public abstract class AbstractModuleContext implements ModuleContext {
     }
 
     @Override
+    public void stop() throws JosException {
+        List<String> moduleNames = ModuleRepository.instance.list()
+                .stream()
+                .map(JosModule::getFullName)
+                .toList();
+        for (String moduleName : moduleNames) {
+            stop(moduleName);
+        }
+    }
+
+    @Override
     public List<String> dependencies(String fullName) throws JosException {
         JosModule josModule = getJosModule(fullName);
         return josModule.getDependencies();

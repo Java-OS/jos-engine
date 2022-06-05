@@ -34,7 +34,8 @@ public class ModuleContextImpl extends AbstractModuleContext {
     protected List<ModuleLayer> enableDependencies(JosModule josModule) throws JosException {
         List<JosModule> moduleList = josModule.getDependencies().stream()
                 .map(ModuleRepository.instance::get)
-                .filter(Objects::nonNull).toList();
+                .filter(Objects::nonNull)
+                .toList();
 
         for (JosModule module : moduleList) {
             if (!module.isEnable()) {

@@ -25,6 +25,7 @@ public interface ModuleContext {
     void stop(String fullName) throws JosException;
 
     void start() throws JosException;
+    void stop() throws JosException;
 
     List<String> dependencies(String fullName) throws JosException;
 }
