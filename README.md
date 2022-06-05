@@ -7,6 +7,7 @@
 * jos-shell:> 
   * exit
   * echo 
+  * module (install, list, delete, enable, disable, ...)
 --- 
 ### TODO 
 1. **CLI**
@@ -17,7 +18,6 @@
    * Timezone (Java)
    * Date and time (???) 
    * save & load (YAML)
-   * install & remove & disable & enable 
    
 2. **Services** 
    * HttpServer [com.sun.net.httpserver.HttpServer] (Admin panel)
