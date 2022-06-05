@@ -59,8 +59,9 @@ public class ShellRegistry implements CommandRegistry {
 
         @Override
         public void complete(LineReader reader, ParsedLine commandLine, List<Candidate> candidates) {
-            assert commandLine != null;
-            assert candidates != null;
+            Objects.requireNonNull(commandLine);
+            Objects.requireNonNull(candidates);
+
             String word = commandLine.word();
             List<String> words = commandLine.words();
             CommandLine sub = findSubcommandLine(words, commandLine.wordIndex());

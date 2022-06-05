@@ -1,8 +1,9 @@
-package ir.moke.jos.shell.command;
+package ir.moke.jos.shell.command.module;
 
 
-import ir.moke.jos.common.exception.JosModuleException;
+import ir.moke.jos.common.exception.JosException;
 import ir.moke.jos.module.ModuleContext;
+import ir.moke.jos.module.ModuleContextImpl;
 import picocli.CommandLine;
 
 import java.nio.file.Path;
@@ -11,13 +12,14 @@ import java.nio.file.Path;
 public class ModuleInstall implements Runnable {
 
     @CommandLine.Parameters
-    private Path jarPath;
+    private Path archive;
 
     @Override
     public void run() {
         try {
-            ModuleContext.install(jarPath);
-        } catch (JosModuleException e) {
+            ModuleContext moduleContext = new ModuleContextImpl();
+            moduleContext.install(archive);
+        } catch (JosException e) {
             System.out.println(e.getMessage());
         }
     }

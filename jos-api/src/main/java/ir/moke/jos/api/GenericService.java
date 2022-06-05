@@ -1,6 +1,7 @@
 package ir.moke.jos.api;
 
 public interface GenericService {
-    void start() ;
-    void stop() ;
+    void start();
+
+    void stop();
 }

@@ -1,26 +1,36 @@
 package ir.moke.jos.shell;
 
+import ir.moke.jos.common.CliTransient;
 import org.nocrala.tools.texttablefmt.Table;
 
-import java.lang.reflect.Field;
 import java.lang.reflect.Method;
 import java.nio.file.Path;
+import java.util.Arrays;
+import java.util.Collection;
 import java.util.List;
 
 public interface StringUtils {
-    static Table formatListToTextTable(List<?> objectList) {
-        Field[] fields = objectList.get(0).getClass().getDeclaredFields();
-        Table table = new Table(fields.length);
-        for (Field field : fields) {
-            table.addCell(field.getName());
+    static Table formatListToTextTable(Collection<?> objectList) {
+        Object first = objectList.iterator().next();
+        List<Method> methods = Arrays.stream(first.getClass().getDeclaredMethods())
+                .filter(item -> item.getName().startsWith("get") || item.getName().startsWith("is"))
+                .filter(item -> !item.isAnnotationPresent(CliTransient.class))
+                .toList();
+        Table table = new Table(methods.size());
+        for (Method m : methods) {
+            if (m.getName().startsWith("get")) {
+                table.addCell(m.getName().substring(3));
+            }
+
+            if (m.getName().startsWith("is")) {
+                table.addCell(m.getName().substring(2));
+            }
         }
 
         for (Object o : objectList) {
-            for (Field field : fields) {
+            for (Method m : methods) {
                 try {
-                    Class<?> aClass = o.getClass();
-                    Method declaredMethod = aClass.getDeclaredMethod(field.getName());
-                    Object value = declaredMethod.invoke(o);
+                    Object value = m.invoke(o);
                     if (value instanceof String) {
                         table.addCell(String.valueOf(value));
                     } else if (value instanceof Boolean) {
@@ -29,6 +39,8 @@ public interface StringUtils {
                         table.addCell(String.valueOf(value));
                     } else if (value instanceof Path) {
                         table.addCell(String.valueOf(((Path) value).getFileName()));
+                    } else if (value instanceof Collection<?>) {
+                        table.addCell(value.toString());
                     } else {
                         table.addCell(" ");
                     }
