@@ -15,7 +15,7 @@ import picocli.CommandLine;
                 ModuleDependencies.class,
         },
         description = "Jos module manager")
-public class Module implements Runnable {
+public class BaseModule implements Runnable {
 
     @Override
     public void run() {
