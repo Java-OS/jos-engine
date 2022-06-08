@@ -1,7 +1,7 @@
 package ir.moke.jos.shell;
 
 import ir.moke.jos.shell.command.Echo;
-import ir.moke.jos.shell.command.module.BaseModule;
+import ir.moke.jos.shell.command.module.ModuleManager;
 import org.fusesource.jansi.AnsiConsole;
 import org.jline.console.SystemRegistry;
 import org.jline.console.impl.SystemRegistryImpl;
@@ -48,7 +48,7 @@ public class JShellContainer {
             CommandLine cmd = new CommandLine(cliCommands, defaultFactory);
 
             cmd.addSubcommand(Echo.class);
-            cmd.addSubcommand(BaseModule.class);
+            cmd.addSubcommand(ModuleManager.class);
             cmd.addSubcommand(CommandLine.HelpCommand.class);
 
             ShellRegistry shellRegistry = new ShellRegistry(cmd);

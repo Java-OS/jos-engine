@@ -6,10 +6,10 @@ import ir.moke.jos.module.ModuleContext;
 import ir.moke.jos.module.ModuleContextImpl;
 import picocli.CommandLine;
 
-@CommandLine.Command(name = "enable", description = "enable jos modules")
-public class ModuleEnable implements Runnable {
+@CommandLine.Command(name = "enable", description = "Enable modules layer")
+public class Enable implements Runnable {
 
-    @CommandLine.Parameters(description = "Jos module name")
+    @CommandLine.Parameters(description = "Module name")
     private String name;
 
     @Override

@@ -6,22 +6,17 @@ import ir.moke.jos.module.ModuleContext;
 import ir.moke.jos.module.ModuleContextImpl;
 import picocli.CommandLine;
 
-import java.util.List;
+@CommandLine.Command(name = "remove", description = "Remove modules")
+public class Remove implements Runnable {
 
-@CommandLine.Command(name = "deps", description = "Module dependencies")
-public class ModuleDependencies implements Runnable {
-
-    @CommandLine.Parameters(description = "Jos module name")
+    @CommandLine.Parameters(description = "Module name")
     private String name;
 
     @Override
     public void run() {
         ModuleContext moduleContext = new ModuleContextImpl();
         try {
-            StringBuilder sb = new StringBuilder();
-            List<String> dependencies = moduleContext.dependencies(name);
-            dependencies.forEach(item -> sb.append(item).append("\n"));
-            System.out.println(sb);
+            moduleContext.delete(name);
         } catch (JosException e) {
             System.out.println(e.getMessage());
         }

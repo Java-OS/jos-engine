@@ -6,17 +6,19 @@ import ir.moke.jos.module.ModuleContext;
 import ir.moke.jos.module.ModuleContextImpl;
 import picocli.CommandLine;
 
-@CommandLine.Command(name = "stop", description = "stop jos modules")
-public class ModuleStop implements Runnable {
+import java.nio.file.Path;
 
-    @CommandLine.Parameters(description = "Jos module name")
-    private String name;
+@CommandLine.Command(name = "install", description = "Install modules")
+public class Install implements Runnable {
+
+    @CommandLine.Parameters(description = "Module archive path")
+    private Path archive;
 
     @Override
     public void run() {
-        ModuleContext moduleContext = new ModuleContextImpl();
         try {
-            moduleContext.stop(name);
+            ModuleContext moduleContext = new ModuleContextImpl();
+            moduleContext.install(archive);
         } catch (JosException e) {
             System.out.println(e.getMessage());
         }

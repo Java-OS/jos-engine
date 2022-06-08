@@ -6,17 +6,17 @@ import ir.moke.jos.module.ModuleContext;
 import ir.moke.jos.module.ModuleContextImpl;
 import picocli.CommandLine;
 
-@CommandLine.Command(name = "disable", description = "disable jos modules")
-public class ModuleDisable implements Runnable {
+@CommandLine.Command(name = "stop", description = "Stop module services")
+public class Stop implements Runnable {
 
-    @CommandLine.Parameters(description = "Jos module name")
+    @CommandLine.Parameters(description = "Module name")
     private String name;
 
     @Override
     public void run() {
         ModuleContext moduleContext = new ModuleContextImpl();
         try {
-            moduleContext.disable(name);
+            moduleContext.stop(name);
         } catch (JosException e) {
             System.out.println(e.getMessage());
         }

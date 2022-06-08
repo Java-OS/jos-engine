@@ -7,7 +7,7 @@ import picocli.CommandLine;
         description = "print strings")
 public class Echo implements Runnable {
 
-    @CommandLine.Parameters(description = "strs")
+    @CommandLine.Parameters(description = "strings")
     private String parameter;
 
     @Override

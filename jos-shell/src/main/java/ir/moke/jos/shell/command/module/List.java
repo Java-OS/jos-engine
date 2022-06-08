@@ -11,8 +11,8 @@ import picocli.CommandLine;
 
 import java.util.Set;
 
-@CommandLine.Command(name = "list", description = "list jos modules")
-public class ModuleList implements Runnable {
+@CommandLine.Command(name = "list", description = "List jos modules")
+public class List implements Runnable {
 
     @Override
     public void run() {
