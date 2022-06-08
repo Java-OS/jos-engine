@@ -8,7 +8,10 @@
   * exit
   * echo 
   * module (install, list, delete, enable, disable, ...)
---- 
+---
+### Module Demo :    
+[![asciicast](https://asciinema.org/a/O5bA5vu4IMXjeBtYgYEosDG0h.svg)](https://asciinema.org/a/O5bA5vu4IMXjeBtYgYEosDG0h)
+---
 ### TODO 
 1. **CLI**
    * reboot & shutdown (JNI) 
