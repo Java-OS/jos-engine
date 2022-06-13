@@ -7,12 +7,15 @@ import ir.moke.jos.module.ModuleContext;
 import ir.moke.jos.module.ModuleContextImpl;
 import ir.moke.jos.shell.ConsoleUtils;
 import org.nocrala.tools.texttablefmt.Table;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import picocli.CommandLine;
 
 import java.util.Set;
 
 @CommandLine.Command(name = "list", description = "List jos modules")
 public class List implements Runnable {
+    private static final Logger logger = LoggerFactory.getLogger(List.class.getName());
 
     @Override
     public void run() {
@@ -26,9 +29,9 @@ public class List implements Runnable {
             table.setColumnWidth(2, 20, 50);
             table.setColumnWidth(3, 15, 50);
             table.setColumnWidth(4, 15, 50);
-            System.out.println(table.render());
+            logger.info(table.render());
         } catch (JosException e) {
-            System.out.println(e.getMessage());
+            logger.error(e.getMessage());
         }
     }
 }

@@ -6,4 +6,5 @@ module jos.core {
     uses ir.moke.jos.api.GenericService;
     uses ModuleContextImpl;
     requires jos.shell;
+    requires org.slf4j;
 }
