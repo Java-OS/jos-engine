@@ -32,6 +32,11 @@
                 <artifactId>logback-classic</artifactId>
                 <version>1.2.11</version>
             </dependency>
+            <dependency>
+                <groupId>ir.moke</groupId>
+                <artifactId>jsysbox</artifactId>
+                <version>0.1</version>
+            </dependency>
         </dependencies>
     </dependencyManagement>
 

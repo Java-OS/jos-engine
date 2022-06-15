@@ -34,7 +34,10 @@
             <version>1.0-SNAPSHOT</version>
             <scope>provided</scope>
         </dependency>
-
+        <dependency>
+            <groupId>ir.moke</groupId>
+            <artifactId>jsysbox</artifactId>
+        </dependency>
 
         <!--  Other dependencies -->
 

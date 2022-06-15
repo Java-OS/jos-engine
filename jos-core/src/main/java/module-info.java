@@ -7,4 +7,5 @@ module jos.core {
     uses ModuleContextImpl;
     requires jos.shell;
     requires org.slf4j;
+    requires jsysbox;
 }
