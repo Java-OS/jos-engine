@@ -22,7 +22,6 @@ public class JShellContainer {
             description = {
                     "Example interactive shell with completion and autosuggestions. " +
                             "Hit @|magenta <TAB>|@ to see available commands.",
-                    "Hit @|magenta ALT-S|@ to toggle tailtips.",
                     ""},
             footer = {"", "Press Ctrl-D to exit."})
     static class CliCommands implements Runnable {
@@ -55,7 +54,6 @@ public class JShellContainer {
             cmd.addSubcommand(UnSetEnv.class);
             cmd.addSubcommand(Shutdown.class);
             cmd.addSubcommand(Reboot.class);
-            cmd.addSubcommand(Test.class);
             cmd.addSubcommand(ModuleManager.class);
             cmd.addSubcommand(CommandLine.HelpCommand.class);
 
