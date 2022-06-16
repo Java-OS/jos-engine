@@ -18,6 +18,11 @@
     <dependencyManagement>
         <dependencies>
             <dependency>
+                <groupId>ir.moke</groupId>
+                <artifactId>jsysbox</artifactId>
+                <version>0.1</version>
+            </dependency>
+            <dependency>
                 <groupId>org.yaml</groupId>
                 <artifactId>snakeyaml</artifactId>
                 <version>1.30</version>
@@ -33,9 +38,9 @@
                 <version>1.2.11</version>
             </dependency>
             <dependency>
-                <groupId>ir.moke</groupId>
-                <artifactId>jsysbox</artifactId>
-                <version>0.1</version>
+                <groupId>org.slf4j</groupId>
+                <artifactId>slf4j-api</artifactId>
+                <version>1.7.36</version>
             </dependency>
         </dependencies>
     </dependencyManagement>

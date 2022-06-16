@@ -1,8 +1,7 @@
 package ir.moke.jos.shell;
 
-import ir.moke.jos.shell.command.Echo;
-import ir.moke.jos.shell.command.Reboot;
 import ir.moke.jos.shell.command.Shutdown;
+import ir.moke.jos.shell.command.*;
 import ir.moke.jos.shell.command.module.ModuleManager;
 import org.fusesource.jansi.AnsiConsole;
 import org.jline.console.SystemRegistry;
@@ -51,15 +50,19 @@ public class JShellContainer {
             CommandLine cmd = new CommandLine(cliCommands, defaultFactory);
 
             cmd.addSubcommand(Echo.class);
-            cmd.addSubcommand(Reboot.class);
+            cmd.addSubcommand(GetEnv.class);
+            cmd.addSubcommand(SetEnv.class);
+            cmd.addSubcommand(UnSetEnv.class);
             cmd.addSubcommand(Shutdown.class);
+            cmd.addSubcommand(Reboot.class);
+            cmd.addSubcommand(Test.class);
             cmd.addSubcommand(ModuleManager.class);
             cmd.addSubcommand(CommandLine.HelpCommand.class);
 
             ShellRegistry shellRegistry = new ShellRegistry(cmd);
 
             Parser parser = new DefaultParser();
-            try (Terminal terminal = TerminalBuilder.terminal()) {
+            try (Terminal terminal = TerminalBuilder.builder().build()) {
                 SystemRegistry systemRegistry = new SystemRegistryImpl(parser, terminal, null, null);
                 systemRegistry.setCommandRegistries(shellRegistry);
                 systemRegistry.register("help", shellRegistry);
@@ -87,7 +90,8 @@ public class JShellContainer {
                     }
                 }
             }
-        } catch (Throwable ignore) {
+        } catch (Throwable t) {
+            t.printStackTrace();
         } finally {
             AnsiConsole.systemUninstall();
         }
