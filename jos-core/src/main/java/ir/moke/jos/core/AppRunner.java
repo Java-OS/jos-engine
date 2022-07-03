@@ -33,5 +33,7 @@ public class AppRunner {
         JSystem.mount("udev", "/dev", FileSystemType.DEV_TMPFS.getType(), mountOptions);
         logger.info("Mount /proc");
         JSystem.mount("proc", "/proc", FileSystemType.PROC.getType(), mountOptions);
+        logger.info("Mount /sys");
+        JSystem.mount("sysfs", "/sys", FileSystemType.PROC.getType(), mountOptions);
     }
 }
