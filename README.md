@@ -13,6 +13,7 @@
   * module (install, list, delete, enable, disable, ...)
   * environment [JNI] (set,get,unset)
   * reboot [JNI] & shutdown
+  * Networking [ip ,Route] (JNI)
   
 ---
 ### Module Demo :    
@@ -35,7 +36,6 @@ docker kill jos-demo
 ### TODO 
 1. **CLI**   
    * hostname (JNI)
-   * Networking [ip ,Route] (JNI)
    * Timezone (Java)
    * Date and time (???) 
    * save & load (YAML)
