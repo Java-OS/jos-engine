@@ -8,7 +8,6 @@ module jos.shell {
     requires jos.common;
     opens ir.moke.jos.shell.command;
     exports ir.moke.jos.shell;
-    opens ir.moke.jos.shell.command.module;
     requires org.slf4j;
     requires jsysbox;
 }

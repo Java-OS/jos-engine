@@ -1,8 +1,6 @@
 package ir.moke.jos.shell;
 
-import ir.moke.jos.shell.command.Shutdown;
 import ir.moke.jos.shell.command.*;
-import ir.moke.jos.shell.command.module.ModuleManager;
 import org.fusesource.jansi.AnsiConsole;
 import org.jline.console.SystemRegistry;
 import org.jline.console.impl.SystemRegistryImpl;
@@ -49,11 +47,10 @@ public class JShellContainer {
             CommandLine cmd = new CommandLine(cliCommands, defaultFactory);
 
             cmd.addSubcommand(Echo.class);
-            cmd.addSubcommand(GetEnv.class);
-            cmd.addSubcommand(SetEnv.class);
-            cmd.addSubcommand(UnSetEnv.class);
-            cmd.addSubcommand(Shutdown.class);
-            cmd.addSubcommand(Reboot.class);
+            cmd.addSubcommand(Env.class);
+            cmd.addSubcommand(Network.class);
+            cmd.addSubcommand(Ping.class);
+            cmd.addSubcommand(Base.class);
             cmd.addSubcommand(ModuleManager.class);
             cmd.addSubcommand(CommandLine.HelpCommand.class);
 

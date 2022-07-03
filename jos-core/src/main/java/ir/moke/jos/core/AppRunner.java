@@ -3,16 +3,17 @@ package ir.moke.jos.core;
 import ir.moke.jos.module.ModuleContext;
 import ir.moke.jos.module.ModuleContextImpl;
 import ir.moke.jos.shell.JShellContainer;
-import ir.moke.jsysbox.FileSystemType;
-import ir.moke.jsysbox.JSystem;
-import ir.moke.jsysbox.MountOptionBuilder;
+import ir.moke.jsysbox.system.FileSystemType;
+import ir.moke.jsysbox.system.JSystem;
+import ir.moke.jsysbox.system.MountOptionBuilder;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import static ir.moke.jsysbox.MountOption.*;
+import static ir.moke.jsysbox.system.MountOption.*;
 
 public class AppRunner {
-    private static final String TERM = "xterm-256color";
+//    private static final String TERM = "xterm-256color";
+    private static final String TERM = "linux";
     private static final Logger logger = LoggerFactory.getLogger(AppRunner.class.getName());
     private static final ModuleContext moduleContext = new ModuleContextImpl();
 

@@ -20,7 +20,7 @@
             <dependency>
                 <groupId>ir.moke</groupId>
                 <artifactId>jsysbox</artifactId>
-                <version>0.1</version>
+                <version>0.2</version>
             </dependency>
             <dependency>
                 <groupId>org.yaml</groupId>
