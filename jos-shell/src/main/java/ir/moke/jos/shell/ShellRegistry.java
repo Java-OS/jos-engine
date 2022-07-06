@@ -1,7 +1,6 @@
 package ir.moke.jos.shell;
 
-
-import org.jline.builtins.Options.HelpException;
+import org.jline.builtins.Options;
 import org.jline.console.ArgDesc;
 import org.jline.console.CmdDesc;
 import org.jline.console.CommandRegistry;
@@ -19,7 +18,6 @@ import picocli.CommandLine.Model.CommandSpec;
 import picocli.CommandLine.Model.OptionSpec;
 
 import java.util.*;
-import java.util.stream.Collectors;
 
 public class ShellRegistry implements CommandRegistry {
 
@@ -134,15 +132,15 @@ public class ShellRegistry implements CommandRegistry {
             return null;
         }
         CommandSpec spec = sub.getCommandSpec();
-        Help cmdhelp = new picocli.CommandLine.Help(spec);
+        Help cmdHelp = new picocli.CommandLine.Help(spec);
         List<AttributedString> main = new ArrayList<>();
         Map<String, List<AttributedString>> options = new HashMap<>();
-        String synopsis = AttributedString.stripAnsi(spec.usageMessage().sectionMap().get("synopsis").render(cmdhelp));
-        main.add(HelpException.highlightSyntax(synopsis.trim(), HelpException.defaultStyle()));
+        String synopsis = AttributedString.stripAnsi(spec.usageMessage().sectionMap().get("synopsis").render(cmdHelp));
+        main.add(Options.HelpException.highlightSyntax(synopsis.trim(), Options.HelpException.defaultStyle()));
         // using JLine help highlight because the statement below does not work well...
-        //        main.add(new AttributedString(spec.usageMessage().sectionMap().get("synopsis").render(cmdhelp).toString()));
+        //        main.add(new AttributedString(spec.usageMessage().sectionMap().get("synopsis").render(cmdHelp).toString()));
         for (OptionSpec o : spec.options()) {
-            String key = Arrays.stream(o.names()).collect(Collectors.joining(" "));
+            String key = String.join(" ", o.names());
             List<AttributedString> val = new ArrayList<>();
             for (String d : o.description()) {
                 val.add(new AttributedString(d));
@@ -152,25 +150,23 @@ public class ShellRegistry implements CommandRegistry {
             }
             options.put(key, val);
         }
-        return new CmdDesc(main, ArgDesc.doArgNames(Arrays.asList("")), options);
+        return new CmdDesc(main, ArgDesc.doArgNames(List.of("")), options);
     }
 
     @Override
     public List<String> commandInfo(String command) {
-        List<String> out = new ArrayList<>();
         CommandSpec spec = cmd.getSubcommands().get(command).getCommandSpec();
-        Help cmdhelp = new picocli.CommandLine.Help(spec);
-        String description = AttributedString.stripAnsi(spec.usageMessage().sectionMap().get("description").render(cmdhelp).toString());
-        out.addAll(Arrays.asList(description.split("\\r?\\n")));
-        return out;
+        Help cmdHelp = new picocli.CommandLine.Help(spec);
+        String description = AttributedString.stripAnsi(spec.usageMessage().sectionMap().get("description").render(cmdHelp));
+        return new ArrayList<>(Arrays.asList(description.split("\\r?\\n")));
     }
 
     // For JLine >= 3.16.0
     @Override
-    public Object invoke(org.jline.console.CommandRegistry.CommandSession session, String command, Object[] args) throws Exception {
+    public Object invoke(org.jline.console.CommandRegistry.CommandSession session, String command, Object[] args) {
         List<String> arguments = new ArrayList<>();
         arguments.add(command);
-        arguments.addAll(Arrays.stream(args).map(Object::toString).collect(Collectors.toList()));
+        arguments.addAll(Arrays.stream(args).map(Object::toString).toList());
         cmd.execute(arguments.toArray(new String[0]));
         return null;
     }

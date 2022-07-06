@@ -57,7 +57,7 @@ public class JShellContainer {
             ShellRegistry shellRegistry = new ShellRegistry(cmd);
 
             Parser parser = new DefaultParser();
-            try (Terminal terminal = TerminalBuilder.builder().build()) {
+            try (Terminal terminal = TerminalBuilder.builder().jna(true).build()) {
                 SystemRegistry systemRegistry = new SystemRegistryImpl(parser, terminal, null, null);
                 systemRegistry.setCommandRegistries(shellRegistry);
                 systemRegistry.register("help", shellRegistry);
@@ -95,6 +95,11 @@ public class JShellContainer {
     public static void clearScreen() {
         System.out.print("\033[H\033[2J");
         System.out.flush();
+    }
+
+    public enum Operation {
+        UP,
+        DOWN
     }
 
 }

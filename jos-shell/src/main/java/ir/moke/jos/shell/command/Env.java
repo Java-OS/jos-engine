@@ -5,14 +5,16 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import picocli.CommandLine;
 
+import java.util.List;
+
 @CommandLine.Command(name = "env",
         version = "0.1",
         mixinStandardHelpOptions = true,
         subcommands = {
-                Env.Get.class,
-                Env.Set.class,
-                Env.UnSet.class,
-                Env.List.class
+                Env.EnvGet.class,
+                Env.EnvSet.class,
+                Env.EnvUnSet.class,
+                Env.EnvList.class
         },
         synopsisSubcommandLabel = "COMMAND",
         description = "Environment variables")
@@ -30,7 +32,7 @@ public class Env implements Runnable {
     @CommandLine.Command(name = "set",
             mixinStandardHelpOptions = true,
             description = "Set environment variable")
-    protected static class Set implements Runnable {
+    protected static class EnvSet implements Runnable {
         @CommandLine.Parameters(description = "environment , ex: key=value")
         private String str;
 
@@ -54,7 +56,7 @@ public class Env implements Runnable {
     @CommandLine.Command(name = "unset",
             mixinStandardHelpOptions = true,
             description = "Unset environment variable")
-    public static class UnSet implements Runnable {
+    public static class EnvUnSet implements Runnable {
         @CommandLine.Parameters(description = "key")
         private String str;
 
@@ -72,7 +74,7 @@ public class Env implements Runnable {
     @CommandLine.Command(name = "get",
             mixinStandardHelpOptions = true,
             description = "Get environment variable")
-    protected static class Get implements Runnable {
+    protected static class EnvGet implements Runnable {
         @CommandLine.Parameters(description = "key")
         private String key;
 
@@ -87,7 +89,7 @@ public class Env implements Runnable {
     @CommandLine.Command(name = "list",
             mixinStandardHelpOptions = true,
             description = "List current variables")
-    protected static class List implements Runnable {
+    protected static class EnvList implements Runnable {
         @Override
         public void run() {
             printListEnvironments();
@@ -95,9 +97,10 @@ public class Env implements Runnable {
     }
 
     protected static void printListEnvironments() {
-        /*
-        * TODO: load environments from config file.
-        * */
+        List<String> environments = JSystem.environments();
+        for (String env : environments) {
+            System.out.println(env);
+        }
     }
 }
 

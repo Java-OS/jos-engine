@@ -7,7 +7,7 @@ import picocli.CommandLine;
         mixinStandardHelpOptions = true,
         subcommands = {
                 Base.Reboot.class,
-                Base.Shutdown.class
+                Base.Shutdown.class,
         },
         synopsisSubcommandLabel = "COMMAND",
         description = "Operating system base commands")
@@ -20,7 +20,6 @@ public class Base implements Runnable {
     public void run() {
         throw new CommandLine.ParameterException(spec.commandLine(), "Missing required subcommand");
     }
-
 
     /*
      * Reboot Command
