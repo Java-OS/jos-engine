@@ -45,7 +45,6 @@
         </dependencies>
     </dependencyManagement>
 
-
     <build>
         <finalName>jos-engine</finalName>
         <plugins>

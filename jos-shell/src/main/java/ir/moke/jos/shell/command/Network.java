@@ -1,7 +1,7 @@
 package ir.moke.jos.shell.command;
 
 import ir.moke.jos.shell.ConsoleUtils;
-import ir.moke.jsysbox.JNetworkException;
+import ir.moke.jsysbox.JSysboxException;
 import ir.moke.jsysbox.network.Ethernet;
 import ir.moke.jsysbox.network.JNetwork;
 import ir.moke.jsysbox.network.Route;
@@ -76,7 +76,7 @@ public class Network implements Runnable {
                     JNetwork.flush(iface);
                     Ethernet ethernet = JNetwork.ethernet(iface);
                     table = ConsoleUtils.formatNetworkInterfaceTable(Collections.singletonList(ethernet));
-                } catch (JNetworkException e) {
+                } catch (JSysboxException e) {
                     logger.error(e.getMessage());
                 } finally {
                     if (table != null) logger.info(table.render());
@@ -135,7 +135,7 @@ public class Network implements Runnable {
                     } else {
                         logger.error("Invalid parameter");
                     }
-                } catch (JNetworkException e) {
+                } catch (JSysboxException e) {
                     logger.error(e.getMessage());
                 } finally {
                     if (table != null) logger.info(table.render());
